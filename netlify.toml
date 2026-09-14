@@ -1,0 +1,43 @@
+[build]
+  command = "pnpm build"
+  publish = "dist"
+  functions = "netlify/functions"
+
+[functions."soundcharts-analysis"]
+  timeout = 26
+
+[dev]
+  command = "pnpm dev"
+  targetPort = 4040
+  port = 8888
+  autoLaunch = false
+
+[[redirects]]
+  from = "/api/waitlist"
+  to = "/.netlify/functions/waitlist"
+  status = 200
+
+[[redirects]]
+  from = "/lookup/soundcharts/artists"
+  to = "/.netlify/functions/soundcharts-artists"
+  status = 200
+
+[[redirects]]
+  from = "/lookup/soundcharts/analysis"
+  to = "/.netlify/functions/soundcharts-analysis"
+  status = 200
+
+[[redirects]]
+  from = "/lookup/itunes/*"
+  to = "/.netlify/functions/itunes-proxy/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/lookup/spotify-oembed"
+  to = "/.netlify/functions/spotify-oembed"
+  status = 200
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

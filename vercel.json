@@ -1,0 +1,28 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "pnpm build",
+  "outputDirectory": "dist",
+  "framework": null,
+  "rewrites": [
+    {
+      "source": "/lookup/soundcharts/artists",
+      "destination": "/api/soundcharts-artists"
+    },
+    {
+      "source": "/lookup/soundcharts/analysis",
+      "destination": "/api/soundcharts-analysis"
+    },
+    {
+      "source": "/lookup/itunes/:path*",
+      "destination": "/api/itunes/:path*"
+    },
+    {
+      "source": "/lookup/spotify-oembed",
+      "destination": "/api/spotify-oembed"
+    },
+    {
+      "source": "/((?!api/|lookup/).*)",
+      "destination": "/index.html"
+    }
+  ]
+}
